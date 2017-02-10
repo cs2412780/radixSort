@@ -7,13 +7,17 @@ import lab1.ArrayBag;
 
 public class RadixSort {
 
-	static SingleLinkedDataQueue<Integer>[] theBukets;
+	static SingleLinkedDataQueue<Integer>[] theBuckets;
 
 	
+	/**
+	 * a function that uses iterative radix sort to sort an array.
+	 * @param array The array that to be sorted
+	 */
 	public static void radixSortByIteration(int[] array) {
 		@SuppressWarnings("unchecked")
 		SingleLinkedDataQueue<Integer>[] theBuket = new SingleLinkedDataQueue[10];
-		theBukets = theBuket;
+		theBuckets = theBuket;
 		for(int i = 0; i < theBuket.length; i++) {
 			theBuket[i] = new SingleLinkedDataQueue<>();
 		}
@@ -25,55 +29,66 @@ public class RadixSort {
 				digit = digit % 10;
 				switch(digit) {
 					case 0: 
-						theBukets[0].enqueue(array[index]);
+						theBuckets[0].enqueue(array[index]);
 						break;
 					case 1: 
-						theBukets[1].enqueue(array[index]);
+						theBuckets[1].enqueue(array[index]);
 						break;
 					case 2: 
-						theBukets[2].enqueue(array[index]);
+						theBuckets[2].enqueue(array[index]);
 						break;
 					case 3: 
-						theBukets[3].enqueue(array[index]);
+						theBuckets[3].enqueue(array[index]);
 						break;
 					case 4: 
-						theBukets[4].enqueue(array[index]);
+						theBuckets[4].enqueue(array[index]);
 						break;
 					case 5: 
-						theBukets[5].enqueue(array[index]);
+						theBuckets[5].enqueue(array[index]);
 						break;
 					case 6: 
-						theBukets[6].enqueue(array[index]);
+						theBuckets[6].enqueue(array[index]);
 						break;
 					case 7: 
-						theBukets[7].enqueue(array[index]);
+						theBuckets[7].enqueue(array[index]);
 						break;
 					case 8: 
-						theBukets[8].enqueue(array[index]);
+						theBuckets[8].enqueue(array[index]);
 						break;
 					case 9: 
-						theBukets[9].enqueue(array[index]);
+						theBuckets[9].enqueue(array[index]);
 						break;
 				}// end switch
 			}
 			int indexOfTheArray = 0;
 			for(int indexOfTheBukets = 0; indexOfTheBukets < 10; indexOfTheBukets++) {
 				
-				while(!theBukets[indexOfTheBukets].isEmpty()) {
-						array[indexOfTheArray] = theBukets[indexOfTheBukets].dequeue();
+				while(!theBuckets[indexOfTheBukets].isEmpty()) {
+						array[indexOfTheArray] = theBuckets[indexOfTheBukets].dequeue();
 						indexOfTheArray++;
 				}
 			}
 			
-			
 		}
-	}
+	}// end determineTheDigits
 	
+	/**
+	 * a function finds the the number of digits that the largest number has
+	 * @param array the target array
+	 * @return the number of digits that the largest number has
+	 */
 	private static int determineTheDigits(int[] array) {
 		int max = findMax(array);
 		String theLength = String.valueOf(max);
 		return theLength.length();
-	}
+	}// end determineTheDigits
+	
+	
+	/**
+	 *  a function finds the largest number in an array
+	 * @param array the target array
+	 * @return The largest number.
+	 */
 	private static int findMax(int[] array) {
 		int max = array[0];
 		for(int i = 1; i < array.length; i++) {
@@ -82,20 +97,30 @@ public class RadixSort {
 			}
 		}
 		return max;
-	}
+	}//end findMax
 	
+	/**
+	 * a function that uses iterative radix sort to sort an array.
+	 * @param array The array that to be sorted
+	 */
 	public static void radixSortByRecursion(int[] array) {
 		@SuppressWarnings("unchecked")
 		SingleLinkedDataQueue<Integer>[] theBuket = new SingleLinkedDataQueue[10];
-		theBukets = theBuket;
+		theBuckets = theBuket;
 		for(int i = 0; i < theBuket.length; i++) {
 			theBuket[i] = new SingleLinkedDataQueue<>();
 		}	
 		int upperbound = determineTheDigits(array);
 		doRadixSort(array, 1, upperbound);
 		
-	}
+	}// end radixSortByRecursion
 	
+	/**
+	 * a function that sorts entries based on decimal positions
+	 * @param array the target array
+	 * @param position the decimal position
+	 * @param upperbound the highest decimal position
+	 */
 	private static void doRadixSort(int[] array, int position, int upperbound) {
 		if(position <= upperbound) {
 			int hashCode = (int) Math.pow(10,position);
@@ -105,42 +130,42 @@ public class RadixSort {
 				digit = digit % 10;
 				switch(digit) {
 					case 0: 
-						theBukets[0].enqueue(array[index]);
+						theBuckets[0].enqueue(array[index]);
 						break;
 					case 1: 
-						theBukets[1].enqueue(array[index]);
+						theBuckets[1].enqueue(array[index]);
 						break;
 					case 2: 
-						theBukets[2].enqueue(array[index]);
+						theBuckets[2].enqueue(array[index]);
 						break;
 					case 3: 
-						theBukets[3].enqueue(array[index]);
+						theBuckets[3].enqueue(array[index]);
 						break;
 					case 4: 
-						theBukets[4].enqueue(array[index]);
+						theBuckets[4].enqueue(array[index]);
 						break;
 					case 5: 
-						theBukets[5].enqueue(array[index]);
+						theBuckets[5].enqueue(array[index]);
 						break;
 					case 6: 
-						theBukets[6].enqueue(array[index]);
+						theBuckets[6].enqueue(array[index]);
 						break;
 					case 7: 
-						theBukets[7].enqueue(array[index]);
+						theBuckets[7].enqueue(array[index]);
 						break;
 					case 8: 
-						theBukets[8].enqueue(array[index]);
+						theBuckets[8].enqueue(array[index]);
 						break;
 					case 9: 
-						theBukets[9].enqueue(array[index]);
+						theBuckets[9].enqueue(array[index]);
 						break;
 				}// end switch
 			}
 			int indexOfTheArray = 0;
 			for(int indexOfTheBukets = 0; indexOfTheBukets < 10; indexOfTheBukets++) {
 				
-				while(!theBukets[indexOfTheBukets].isEmpty()) {
-						array[indexOfTheArray] = theBukets[indexOfTheBukets].dequeue();
+				while(!theBuckets[indexOfTheBukets].isEmpty()) {
+						array[indexOfTheArray] = theBuckets[indexOfTheBukets].dequeue();
 						indexOfTheArray++;
 				}
 			}
@@ -150,45 +175,32 @@ public class RadixSort {
 
 		}
 		
-	}
+	}// End doRadixSort
 
 	public static void main(String[] args) {
 
-		ArrayBag<Integer> a1 = new ArrayBag<>(100000);
-		ArrayBag<Integer> a2 = new ArrayBag<>(100000);
+		ArrayBag<Integer> a1 = new ArrayBag<>(10);
+		ArrayBag<Integer> a2 = new ArrayBag<>(10);
 
 		Random r = new Random();
-		int[] array =new int[100000];
+		int[] array =new int[10];
 
 		for(int i = 0; i < array.length; i++) {
-			array[i] = r.nextInt(100000);
+			array[i] = r.nextInt(10);
 			a1.add(array[i]);
 			//System.out.println(array[i]);
 		}
 		
-		System.out.println("radixSortByRecursion: ");
-		long starttimes = System.nanoTime();
-		radixSortByRecursion(array);
-		long endtimes = System.nanoTime();
 		
-		long  b = (endtimes - starttimes) / 1000000;
-		System.out.println(b);
+		
+		System.out.println("radixSortByRecursion: ");
+		radixSortByRecursion(array);
+
 		for(int i = 0; i < array.length; i++) {
 			a2.add(array[i]);
 			//System.out.println(array[i]);
 		}
-		boolean pass = true;
-		for(int i = 0; i < array.length - 1; i++) {
-			if(array[i] > array[i + 1]) {
-				System.out.println("*****Failed");
-				pass = false;
-				break;
-			}
-		}
-		
-		if(a1.equals(a2) && pass) {
-			System.out.println("Sorted.");
-		}
+
 		
 	}
 	
